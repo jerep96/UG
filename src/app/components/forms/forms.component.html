@@ -1,0 +1,93 @@
+<!-- Form primeira_leitura -->
+<form *ngIf="formType == 'primeira_leitura'" (ngSubmit)="onSubmit()" [formGroup]="primeraLecturaForm">
+  <div class="form-group">
+    <label for="ul_medidor">Medidor
+    </label>
+    <input type="text" class="form-control" id="ul_medidor" formControlName="ul_medidor"/>
+    <div *ngIf="primeraLecturaForm.get('ul_medidor')?.touched  && primeraLecturaForm.get('ul_medidor')?.errors?.['required']" class="alert alert-danger mt-1">O campo é obrigatório</div>
+  </div>
+  <div class="form-group">
+    <label for="ul_leitura_inicial">Leitura Inicial
+    </label>
+    <input type="text" class="form-control" id="ul_leitura_inicial" formControlName="ul_leitura_inicial"/>
+    <div *ngIf="primeraLecturaForm.get('ul_leitura_inicial')?.touched  && primeraLecturaForm.get('ul_leitura_inicial')?.errors?.['required']" class="alert alert-danger mt-1">O campo é obrigatório</div>
+  </div>
+  <div class="form-group">
+    <label for="ul_ocorrencia">Ocorrências
+    </label>
+    <select class="form-select" id="ul_ocorrencia" formControlName="ul_ocorrencia" (change)="ocurrenciasValidationPrimeraLectura()">
+      <option [value]="item.id" *ngFor="let item of listaPrimeraLectura">{{item.value}}</option>
+    </select>
+    <div *ngIf="primeraLecturaForm.get('ul_ocorrencia')?.touched  && primeraLecturaForm.get('ul_ocorrencia')?.errors?.['required']" class="alert alert-danger mt-1">O campo é obrigatório</div>
+  </div>
+  <div class="form-group">
+    <label for="ul_observacao">Observação
+    </label>
+    <textarea type="text" class="form-control" id="ul_observacao" formControlName="ul_observacao"></textarea> 
+  </div>
+  <button type="submit" class="btn btn-primary mt-4" [disabled]="primeraLecturaForm.invalid">Mandar</button>
+</form>
+
+<!-- Form vistoria mensal -->
+<form *ngIf="formType == 'vistoria_mensal'" (ngSubmit)="onSubmit()" [formGroup]="vistoriaMensalForm">
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="ul_sem_identificacao" formControlName="ul_sem_identificacao" (change)="unidentifiedMeter()">
+    <label class="form-check-label" for="ul_sem_identificacao">
+      Sem Identificação
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="ul_medidor">Medidor
+    </label>
+    <input type="text" class="form-control" id="ul_medidor" formControlName="ul_medidor" (change)="identifiedMeter()"/>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="ul_sem_medidor" formControlName="ul_sem_medidor" (change)="unidentifiedMeter()">
+    <label class="form-check-label" for="ul_sem_medidor">
+      Sem Medidor
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="ul_ocorrencia">Ocorrências
+    </label>
+    <select class="form-select" id="ul_ocorrencia" formControlName="ul_ocorrencia" (change)="ocurrenciasValidationVistoriaMensal()">
+      <option [value]="item.id" *ngFor="let item of listaVistoriaMensal">{{item.value}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="ul_consumo">Consumo
+    </label>
+    <input type="text" class="form-control" id="ul_consumo" formControlName="ul_consumo"/>
+  </div>
+  <div class="form-group">
+    <label for="ul_observacao">Observação
+    </label>
+    <textarea type="text" class="form-control" id="ul_observacao" formControlName="ul_observacao"></textarea>
+    <div *ngIf="vistoriaMensalForm.get('ul_observacao')?.touched  && vistoriaMensalForm.get('ul_observacao')?.errors?.['required']" class="alert alert-danger mt-1">O campo é obrigatório</div> 
+  </div>
+  <button type="submit" class="btn btn-primary mt-4" [disabled]="vistoriaMensalForm.invalid">Mandar</button>
+</form>
+
+<!-- Form leitura_individual -->
+<form *ngIf="formType == 'leitura_individual'" (ngSubmit)="onSubmit()" [formGroup]="lecturaIndividualForm">
+  <div class="form-group">
+    <label for="ul_consumo">Consumo
+    </label>
+    <input type="text" class="form-control" id="ul_consumo" formControlName="ul_consumo"/>
+    <div *ngIf="lecturaIndividualForm.get('ul_consumo')?.touched  && lecturaIndividualForm.get('ul_consumo')?.errors?.['required']" class="alert alert-danger mt-1">O campo é obrigatório</div>
+  </div>
+  <div class="form-group">
+    <label for="ul_ocorrencia">Ocorrências
+    </label>
+    <select class="form-select" id="ul_ocorrencia" formControlName="ul_ocorrencia" (change)="ocurrenciasValidationPrimeraLectura()">
+      <option [value]="item.id" *ngFor="let item of listaLecturaIndividual">{{item.value}}</option>
+    </select>
+    <div *ngIf="primeraLecturaForm.get('ul_ocorrencia')?.touched  && primeraLecturaForm.get('ul_ocorrencia')?.errors?.['required']" class="alert alert-danger mt-1">O campo é obrigatório</div>
+  </div>
+  <div class="form-group">
+    <label for="ul_observacao">Observação
+    </label>
+    <textarea type="text" class="form-control" id="ul_observacao" formControlName="ul_observacao"></textarea> 
+  </div>
+  <button type="submit" class="btn btn-primary mt-4" [disabled]="lecturaIndividualForm.invalid">Mandar</button>
+</form>

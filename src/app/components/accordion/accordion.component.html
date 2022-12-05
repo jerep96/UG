@@ -1,0 +1,12 @@
+<div class="container mt-4">
+  <ngb-accordion [closeOthers]="true" activeIds="0" *ngFor="let bloque of bloquesData; index as i">
+    <ngb-panel id={{i}}>
+        <ng-template ngbPanelTitle>
+            <span>Bloco: {{bloque.ul_blocco}}</span>
+          </ng-template>
+      <ng-template ngbPanelContent>
+        <app-table [activities]="bloque.ordenServicio"></app-table>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>

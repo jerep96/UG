@@ -1,0 +1,51 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+      <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Local</th>
+            <th scope="col">Actividade</th>
+            <th scope="col">Ações</th>
+            <th scope="col">Numero de ordem</th>
+            <th scope="col">Morador</th>
+            <th scope="col">Data</th>
+          </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let activity of activities; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ activity.ul_unidade | json }}</td>
+              <td>{{ activity.activityType }}</td>
+              <td><button type="button" class="btn btn-primary" (click)="openFullscreen(content,activity.activityType)">Cargar</button></td>
+              <td>{{ activity.ul_nro_orden }}</td>
+              <td>{{ activity.ul_responsavel }}</td>
+              <td>{{ activity.ul_sla_start | date : 'shortDate' }}</td>
+
+              <ng-template #content let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">{{ titleTypeOfActivity }}</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ activity.ul_unidade | json }}</h5>
+                      <span class="card-text">Morador: {{ activity.ul_responsavel }}</span><br>
+                      <span class="card-text">Status UC: {{ activity.activityType }}</span>
+                    </div>
+                  </div>
+                  <div *ngIf="activity.activityType == 'vistoria_mensal'" class="form-group">
+                    <label for="ul_unidade">Número UC
+                    </label>
+                    <input type="text" class="form-control" placeholder="{{activity.ul_unidade}}" id="ul_unidade" disabled/>
+                  </div>
+                  <app-forms [formType]="titleTypeOfActivity"></app-forms>
+                </div>
+                <div class="modal-footer">
+                </div>
+              </ng-template>
+      </tr>
+      </tbody>
+  </table>
+</div>
+
