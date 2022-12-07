@@ -77,7 +77,7 @@ export class DataService {
       'ul_origem_suspensao':'',
       'ul_motivo_suspensao':'',
       'ul_boletos_json':[]},
-      {'activityType':'leitura_individual',
+      {'activityType':'religue_de_fornecimento',
       'duration':60,
       'ul_nro_orden':'76001968267120',
       'ul_unidade':'2B',
