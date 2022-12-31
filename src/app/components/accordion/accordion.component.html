@@ -3,6 +3,7 @@
     <ngb-panel id={{i}}>
         <ng-template ngbPanelTitle>
             <span>Bloco: {{bloque.ul_blocco}}</span>
+            <span class="badge bg-secondary ms-2">{{statusCount[i]}}</span>
           </ng-template>
       <ng-template ngbPanelContent>
         <app-table [activities]="bloque.ordenServicio"></app-table>

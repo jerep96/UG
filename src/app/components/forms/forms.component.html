@@ -135,7 +135,7 @@
 </form>
 
 <!-- Form Religue de Fornecimento -->
-<form *ngIf="formType == 'religue_de_fornecimento'" (ngSubmit)="onSubmit()" [formGroup]="religueFornecimentoForm">
+<form *ngIf="formType == 'religue_de_fornecimento' || 'religue_emergencial'" (ngSubmit)="onSubmit()" [formGroup]="religueFornecimentoForm">
   <div class="form-group">
     <label for="ul_medidor">Medidor </label>
     <input type="text" class="form-control" id="ul_medidor" formControlName="ul_medidor" />
