@@ -1,0 +1,9 @@
+
+.highPriority{
+    color: red;
+    margin-right: -15px;
+}
+
+.lowPriority{
+    color: cornflowerblue;
+}

@@ -4,6 +4,7 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Local</th>
+            <th>Prioridade</th>
             <th scope="col">Actividade</th>
             <th scope="col">Ações</th>
             <th scope="col">Numero de ordem</th>
@@ -12,15 +13,32 @@
           </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let activity of activities; index as i">
+      <tr *ngFor="let activity of activities; index as i" [ngClass]="{'alert alert-danger': activity.prioridade == 'ALTA'}">
               <th scope="row">{{ i + 1 }}</th>
               <td>{{ activity.ul_unidade | json }}</td>
+              <td>
+                <!--High Priority-->
+                <div *ngIf="activity.prioridade == 'ALTA'">
+                  <span class="material-icons highPriority">
+                    priority_high
+                    </span>
+                    <span class="material-icons highPriority">
+                      priority_high
+                    </span>
+                </div>
+                <!--Low Priority-->
+                <div *ngIf="activity.prioridade == 'BAJA'">
+                  <span class="material-icons lowPriority">
+                    priority_high
+                  </span>
+                </div>
+
+              </td>
               <td>{{ activity.activityType }}</td>
               <td><button type="button" class="btn btn-primary" (click)="openFullscreen(content,activity.activityType)">Cargar</button></td>
               <td>{{ activity.ul_nro_orden }}</td>
               <td>{{ activity.ul_responsavel }}</td>
               <td>{{ activity.ul_sla_start | date : 'shortDate' }}</td>
-
               <ng-template #content let-c="close" let-d="dismiss">
                 <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">{{ titleTypeOfActivity }}</h4>
